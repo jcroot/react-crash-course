@@ -1,10 +1,12 @@
-import {NavLink} from "react-router-dom";
+import {NavLink, useRouteLoaderData} from "react-router-dom";
 import logo from "../assets/images/logo.png";
 
 const NavBar = () => {
     const linkClass = ({isActive}) =>
         isActive ? "text-white bg-black hover:bg-gray-900 hover:text-white rounded-md px-3 py-2" :
             "text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
+
+    const token = useRouteLoaderData('root');
 
     return (
         <div>
@@ -36,10 +38,17 @@ const NavBar = () => {
                                         className={linkClass}
                                     >Jobs</NavLink
                                     >
+                                    {token && (
+                                        <NavLink
+                                            to="/add-job"
+                                            className={linkClass}
+                                        >Add Job</NavLink
+                                        >
+                                    )}
                                     <NavLink
-                                        to="/add-job"
+                                        to="/login"
                                         className={linkClass}
-                                    >Add Job</NavLink
+                                    >Sign In</NavLink
                                     >
                                 </div>
                             </div>
